@@ -1,2 +1,0 @@
-# CartasMemoria
-Encuentra la pareja
