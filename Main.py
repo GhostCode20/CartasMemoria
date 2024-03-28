@@ -4,7 +4,10 @@ import random
 import time
 
 
-#creamos la ventana y la configuramos    
+
+
+
+#creamos la ventana y la configuramos    s
 ventana = tkinter.Tk()
 ventana.geometry("1200x950")
 ventana.configure(bg="spring green")
@@ -28,6 +31,7 @@ imapreg=tkinter.PhotoImage(file="imagenes_memorama/interrogante.png")
 imagenes=[imagen0,imagen1,imagen2,imagen3,imagen4,imagen5,imagen0,imagen1,imagen2,imagen3,imagen4,imagen5]
 
 
+
 #barajeamos las imágenes del memorama con fisher-yates
 def shuffle(arr):
     last_index = len(arr)-1
@@ -44,8 +48,8 @@ def shuffle(arr):
 barajeado=shuffle(imagenes)
 
 
-
-
+resta=0
+puntaje=0
 #intentos para que tome los intentos que le está tomando al usuario
 intentos=0
 
@@ -53,8 +57,13 @@ intentos=0
 etiqueta_intentos=tkinter.Label(ventana,text=" Intentos : "+str(intentos),font=("Impact",30),bg="RoyalBlue4",fg="white")
 etiqueta_intentos.place(x=965,y=350)
 
+#etiqueta que muestra los intentos hechos por el usuario
+etiqueta_puntaje=tkinter.Label(ventana,text=" Puntaje : "+str(puntaje),font=("Impact",30),bg="RoyalBlue4",fg="white")
+etiqueta_puntaje.place(x=950,y=250)
 
-#creamos los 12 botones configurados, lo más importante es el argumento que le pasamos a eleccion que es la posicion que va a ser comparada en nuestro array barajeado
+
+#creamos los 12 botones configurados, lo más importante es el argumento que
+#le pasamos a eleccion que es la posicion que va a ser comparada en nuestro array barajeado
 
 
 botones=[]
@@ -83,7 +92,6 @@ miFrame=tkinter.Frame(ventana,background="gold")
 
 
 
-
 #contadr_elec para que cuente los dos clickeo por turno
 contador_elec=0
 #contador_gana si empareja 6 pares
@@ -94,7 +102,7 @@ posiciones=[None,None]
 emparejados=[]
 def eleccion(n):
     #declaramos las variables globales para que funcionen fuera de la función
-    global contador_gana,posiciones,emparejados,intentos,ventana,miFrame
+    global contador_gana,posiciones,emparejados,intentos,ventana,miFrame,puntaje,resta
 
     #si se seleccionó una imagen de las que ya está acertada (emparejada) no hace nada
     if n in emparejados:
@@ -135,8 +143,11 @@ def eleccion(n):
                     posiciones=[None,None]
                     #aumentamos los intentos
                     intentos+=1
+                    #puntaje aumentar
+                    puntaje+=500
                     #cambiamos la etiqueta_intentos con el texto de la variable intentos
                     etiqueta_intentos.config(text=" Intentos : "+str(intentos))
+                    etiqueta_puntaje.config(text=" Puntaje : "+str(puntaje))
                 else:
                     #si no coincidieron las imagenes espera para cambiar las imagenes en los botones en las posiciones que no eran iguales las imagenes
                     time.sleep(0.25)
@@ -147,8 +158,15 @@ def eleccion(n):
                     posiciones=[None,None]
                     #aumentamos los intentos
                     intentos+=1
+                    #operacionm
+                    puntaje -=50
                     #cambiamos la etiqueta_intentos con el texto de la variable intentos
                     etiqueta_intentos.config(text="Intentos : "+str(intentos))
+
+
+
+    puntaje -=resta
+
 
     #si acierta los 6 pares el usuario ganó      
     if contador_gana==6:
@@ -163,6 +181,7 @@ def eleccion(n):
 
         #muestra un mensaje en una etiqueta
         tkinter.Label(ventana,text=" ¡¡Bien hecho!! ",font=("Impact",50),fg="gold",bg="white").place(x=350,y=300)
+
 
 
 
