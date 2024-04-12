@@ -40,7 +40,7 @@ def shuffle(arr):
     return arr
 
 def reiniciar_juego():
-    global contador_gana, posiciones, emparejados, intentos, puntaje,barajeado,lbltermino
+    global contador_gana, posiciones, emparejados, intentos, puntaje,barajeado
     contador_gana = 0
     posiciones = [None, None]
     emparejados = []
@@ -87,11 +87,11 @@ saludo.place(x=965,y=100)
 etiqueta_intentos=tkinter.Label(ventana,text=" Attemps : "+str(intentos),font=("verdana",18),bg="#CB0000",fg="white")
 etiqueta_intentos.place(x=965,y=350)
 
-#etiqueta que muestra los intentos hechos por el usuario
+#etiqueta que muestra puntaje del usuario
 etiqueta_puntaje=tkinter.Label(ventana,text=" Score : "+str(puntaje),font=("verdana",18),bg="#CB0000",fg="white")
 etiqueta_puntaje.place(x=965,y=300)
 
-#etiqueta que muestra los intentos hechos por el usuario
+#etiqueta que muestra botón reinicio
 reinicio=tkinter.Button(ventana,text="Reset",font=("verdana",16),bg="#CB0000",fg="white", command=reiniciar_juego)
 reinicio.place(x=1020,y=450)
 
